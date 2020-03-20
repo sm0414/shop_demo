@@ -31,14 +31,14 @@ def data_price(product):
 def data_accuracy(product):
     yahoo_data = scraping_accuracy.search_yahoo(product)
     momo_data = scraping_accuracy.search_momo(product)
-#    pchome_data = scraping_accuracy.search_pchome(product)
+    pchome_data = scraping_accuracy.search_pchome(product)
     
     alldata = []
     
-    for y,m in zip(yahoo_data,momo_data):
+    for y,m,p in zip(yahoo_data,momo_data,pchome_data):
         alldata.append(y)
         alldata.append(m)
-#        alldata.append(p)
+        alldata.append(p)
     
     
     contents = sorted(alldata, key=lambda i: i['price'])
