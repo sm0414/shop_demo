@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block banner %}
+Django資訊站
+{% endblock %}
+
+{% block css %}
+
+  #city{
+    margin-top: 30px;
+  }
+
+
+{% endblock %}
+
+
+{% block content %}
+
+<form method="get">
+  <div id="city" class="form-group col-md-7 mx-auto">
+    <input id="cityname" type="text" name="city" class="form-control" placeholder="ex. 臺北市,臺中市...">
+    <input id="search" type="submit" name="submit" class="form-control btn btn-lg btn-dark" value="查詢"/>
+  </div>
+</form>
+
+<div class="col-8 mx-auto mt-3">
+  <div id="weater" class="alert alert-success">{{weater}}</div>
+</div>
+
+
+
+{% endblock %}
