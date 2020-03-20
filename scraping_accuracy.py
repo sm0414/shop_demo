@@ -115,9 +115,9 @@ def search_momo(product):
     return items
 
 def search_pchome(product):
-#    driver = webdriver.PhantomJS(executable_path='home/vincent/usr/local/src/phantomjs/bin/phantomjs.exe')
-    #driver = webdriver.Chrome('C://chromedriver.exe')
-    driver = webdriver.PhantomJS()
+    driver = webdriver.PhantomJS(executable_path='C://phantomjs.exe')
+#    driver = webdriver.Chrome('C://chromedriver.exe')
+#    driver = webdriver.PhantomJS()
     driver.get('https://shopping.pchome.com.tw/')
     
     try:
@@ -137,12 +137,13 @@ def search_pchome(product):
     
     try:
         WebDriverWait(driver,30).until(EC.presence_of_element_located((By.ID,'ItemContainer')))
+        time.sleep(1)
     finally:
-        list = driver.find_elements_by_css_selector('#ItemContainer dl')
+        content = driver.find_elements_by_css_selector('#ItemContainer dl')
         i=0
         items = []
         
-        for row in list:
+        for row in content:
             if (i<15):
                 item = {}
                 name = row.find_elements_by_css_selector('.prod_name a')[0].text

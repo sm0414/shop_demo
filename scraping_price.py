@@ -137,12 +137,13 @@ def search_pchome(product):
     
     try:
         WebDriverWait(driver,30).until(EC.presence_of_element_located((By.ID,'ItemContainer')))
+        time.sleep(1)
     finally:
-        list = driver.find_elements_by_css_selector('#ItemContainer dl')
+        conetnt = driver.find_elements_by_css_selector('#ItemContainer dl')
         i=0
         items = []
         
-        for row in list:
+        for row in conetnt:
             if (i<15):
                 item = {}
                 name = row.find_elements_by_css_selector('.prod_name a')[0].text
