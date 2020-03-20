@@ -42,8 +42,8 @@ def data_accuracy(product):
         alldata.append(p)
     
     
-    contents = sorted(alldata, key=lambda i: i['price'])
+#    contents = sorted(alldata, key=lambda i: i['price'])
     
-    return contents
+    return alldata
 
 print(data_accuracy('口罩'))
