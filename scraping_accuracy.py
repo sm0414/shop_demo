@@ -115,9 +115,9 @@ def search_momo(product):
     return items
 
 def search_pchome(product):
-    driver = webdriver.PhantomJS(executable_path='C://phantomjs.exe')
+#    driver = webdriver.PhantomJS(executable_path='C://phantomjs.exe')
 #    driver = webdriver.Chrome('C://chromedriver.exe')
-#    driver = webdriver.PhantomJS()
+    driver = webdriver.PhantomJS()
     driver.get('https://shopping.pchome.com.tw/')
     
     try:
