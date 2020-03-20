@@ -13,8 +13,6 @@ def getWeater(city):
 #   city = result['cwbopendata']['dataset']['location'][citys[city]]['locationName']
 #   weater = result['cwbopendata']['dataset']['location'][citys[city]]['weatherElement'][0]['time'][1]['parameter']['parameterName']
     driver = webdriver.PhantomJS()
-#    driver = webdriver.PhantomJS(executable_path='phantomjs.exe')
-#    driver = webdriver.Chrome('C://chromedriver.exe')
 
 
     driver.get('https://tw.yahoo.com/')
@@ -27,6 +25,6 @@ def getWeater(city):
 
     return(city,weater)
    
-print(getWeater('台中'))
+#print(getWeater('台中'))
    
    

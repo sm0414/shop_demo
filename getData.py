@@ -30,8 +30,11 @@ def data_price(product):
 
 def data_accuracy(product):
     yahoo_data = scraping_accuracy.search_yahoo(product)
+    print(1)
     momo_data = scraping_accuracy.search_momo(product)
+    print(2)
     pchome_data = scraping_accuracy.search_pchome(product)
+    print(3)
     
     alldata = []
     
@@ -45,4 +48,4 @@ def data_accuracy(product):
     
     return contents
 
-print(data_accuracy('口罩'))
+data_accuracy('口罩')
