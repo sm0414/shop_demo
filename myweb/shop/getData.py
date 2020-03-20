@@ -43,4 +43,4 @@ def data_accuracy(product):
     
     return contents
 
-print(data_price('iphone'))
+#print(data_price('iphone'))
