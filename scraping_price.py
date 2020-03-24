@@ -12,6 +12,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
+import urllib
 
 
 yahoo_url = 'https://tw.buy.yahoo.com/search/product'
@@ -115,29 +116,18 @@ def search_momo(product):
     return items
 
 def search_pchome(product):
-#    driver = webdriver.PhantomJS(executable_path='home/vincent/usr/local/src/phantomjs/bin/phantomjs.exe')
+#    driver = webdriver.PhantomJS(executable_path='C://phantomjs.exe')
     #driver = webdriver.Chrome('C://chromedriver.exe')
     driver = webdriver.PhantomJS()
-    driver.get('https://shopping.pchome.com.tw/')
     
-    try:
-        WebDriverWait(driver,30).until(EC.presence_of_element_located((By.ID,'keyword')))
-    finally:
-        driver.find_elements_by_css_selector('#keyword')[0].send_keys(product)
-        driver.find_elements_by_css_selector('#doSearch')[0].click()
-        
+    encodedProduct = urllib.parse.quote(product)    
+    driver.get('https://ecshweb.pchome.com.tw/search/v3.3/?q='+encodedProduct+'&scope=all&sortParm=prc&sortOrder=ac')
     
-    try:
-        WebDriverWait(driver,30).until(EC.presence_of_element_located((By.ID,'SwitchBar')))
-        time.sleep(0.5)
-    finally:
-        driver.find_elements_by_css_selector('#SwitchBar .right dd a')[2].click()
-    
-    
+
     
     try:
         WebDriverWait(driver,30).until(EC.presence_of_element_located((By.ID,'ItemContainer')))
-        time.sleep(1)
+        time.sleep(0.5)
     finally:
         conetnt = driver.find_elements_by_css_selector('#ItemContainer dl')
         i=0
@@ -164,4 +154,4 @@ def search_pchome(product):
     driver.close()    
     return items
 
-#print(search_pchome('口罩'))
+print(search_pchome('口罩'))
