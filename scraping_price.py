@@ -154,4 +154,4 @@ def search_pchome(product):
     driver.close()    
     return items
 
-print(search_pchome('口罩'))
+#print(search_pchome('口罩'))
