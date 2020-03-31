@@ -71,46 +71,63 @@ Django比價
 
 {% block content %}
 
-<form method="get">
-  <div id="scraping" class="form-group col-md-7 mx-auto">
-    <input id="product" type="text" name="product" class="form-control" placeholder="ex. 口罩,酒精...">
-    <input id="search" type="submit" name="submit" class="form-control btn btn-lg btn-dark" value="查詢"/>
+  <form method="get">
+    <div id="scraping" class="form-group col-md-7 mx-auto">
+      <input id="product" type="text" name="product" class="form-control" placeholder="ex. 口罩,酒精..."/>
+      <input id="search" type="submit" name="submit" class="form-control btn btn-lg btn-dark" value="查詢"/>
+    </div>
+  </form>
+
+  <div id="SwitchBar">
+      <dl class="bar">
+        <dd class="sort">
+          <a type="button" id="by_accuracy">精準度</a>
+        </dd>
+        <dd class="sort">
+          <a type="button" id="by_price">價錢低到高</a>
+        </dd>
+      </dl>
   </div>
-</form>
-
-<div id="SwitchBar">
-  <dl class="bar">
-    <dd class="sort">
-      <span>精準度</span>
-    </dd>
-    <dd class="sort">
-      <a>價格低到高</a>
-    </dd>
-  </dl>
-</div>
 
 
-<div class='info'>
+  <div class='info'>
 
-  {% for plist in product_list %}
+    {% for plist in product_list %}
 
-    <div class='infoarea col-xs-4 col-sm-6 col-md-4 col-lg-3'>
+      <div class='infoarea col-xs-4 col-sm-6 col-md-4 col-lg-3'>
 
-      <div style="height: 360px;margin: auto;width: 240px;padding:0 20px;border-style: solid;border-width:1px;border-color: #F5F5F5;">
-        <ul>
+        <div style="height: 360px;margin: auto;width: 240px;padding:0 20px;border-style: solid;border-width:1px;border-color: #F5F5F5;">
+          <ul>
 
-          <li class="web">商城：{{plist.webname}}</li>
-          <li class="img"><a href="{{plist.link}}" target="_blank"><img src="{{plist.img}}"  /></a></li>
-          <li class="pname">產品名稱：{{plist.pname}}</li>
-          <li>價格：{{plist.price}}</li>
+            <li class="web">商城：{{plist.webname}}</li>
+            <li class="img"><a href="{{plist.link}}" target="_blank"><img src="{{plist.img}}"  /></a></li>
+            <li class="pname">產品名稱：{{plist.pname}}</li>
+            <li>價格：{{plist.price}}</li>
 
-        </ul>
+          </ul>
+        </div>
+
       </div>
 
-    </div>
+    {% endfor %}
 
-  {% endfor %}
+  </div>
 
-</div>
+  <script type="text/javascript">
+    $("#by_price").click(function(){
+      var path = 'http://192.168.43.122:8000'+location.pathname
+      console.log(path)
+      if (path != 'http://192.168.43.122:8000/shop/price/'){
+        document.location.href="/shop/price";
+      }
+    });
+    $("#by_accuracy").click(function goBack(){
+      var path = 'http://192.168.43.122:8000'+location.pathname
+      console.log(path)
+      if (path != 'http://192.168.43.122:8000/shop/'){
+        window.history.back();
+      }
+    });
+  </script>
 
 {% endblock %}

@@ -21,53 +21,41 @@ def index(request):
 
 
 def shop(request):
-#   name=''
-#   if 'product' in request.GET:
-#       name = request.GET['product']
-#       if name != '':
-#           product_list = getData.getData(name)
-#           data = {'product_list':product_list}
-#           
-#   return render(request,'shop.html',data)
-   product=''
+   global product
+   product = ''
+
    if 'product' in request.GET:
        product = request.GET['product']
        if product != '':
            try:
                data =getData.data_accuracy(product)
                content = {'product_list':data}
+               return render(request,'shop.html',content)
            except:
               return render(request,'shop.html')
        else:
            return render(request,'shop.html')
-           
-       return render(request,'shop.html',content)
    
    else:
        return render(request,'shop.html')
    
-def shop_price(request):
-#   name=''
-#   if 'product' in request.GET:
-#       name = request.GET['product']
-#       if name != '':
-#           product_list = getData.getData(name)
-#           data = {'product_list':product_list}
-#           
-#   return render(request,'shop.html',data)
-   product=''
+def price(request):
+   global product
    if 'product' in request.GET:
        product = request.GET['product']
+       
        if product != '':
            try:
                data =getData.data_price(product)
                content = {'product_list':data}
+               return render(request,'shop.html',content)
            except:
-              return render(request,'shop.html')
-       else:
-           return render(request,'shop.html')
-           
-       return render(request,'shop.html',content)
-   
+               return render(request,'shop.html')
    else:
-       return render(request,'shop.html')
+       try:
+           data =getData.data_price(product)
+           content = {'product_list':data}
+           return render(request,'shop.html',content)
+       except:
+           print(product)
+           return render(request,'shop.html')
