@@ -3,3 +3,5 @@
 [INFO  - 2020-04-12T03:09:56.043Z] Session [15fabc00-7c6b-11ea-a0d2-23cc6c099f90] - page.customHeaders:  - {}
 [INFO  - 2020-04-12T03:09:56.043Z] Session [15fabc00-7c6b-11ea-a0d2-23cc6c099f90] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
 [INFO  - 2020-04-12T03:09:56.043Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 15fabc00-7c6b-11ea-a0d2-23cc6c099f90
+[INFO  - 2020-04-12T03:14:52.074Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2020-04-12T03:14:52.075Z] SessionManagerReqHand - _cleanupWindowlessSessions - Deleted Session '15fabc00-7c6b-11ea-a0d2-23cc6c099f90', because windowless
