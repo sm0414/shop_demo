@@ -27,7 +27,7 @@ def shop(request):
    if 'product' in request.GET:
        product = request.GET['product']
        if product != '':
-           product = product.replace(' ','%')
+           product = product.replace('+','%')
            try:
                data =getData.data_accuracy(product)
                content = {'product_list':data}
