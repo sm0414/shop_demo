@@ -126,7 +126,7 @@ def search_pchome(product):
 
     
     try:
-        WebDriverWait(driver,30).until(EC.presence_of_element_located((By.ID,'ItemContainer')))
+        WebDriverWait(driver,0.1).until(EC.presence_of_element_located((By.ID,'ItemContainer')))
         time.sleep(0.5)
     finally:
         conetnt = driver.find_elements_by_css_selector('#ItemContainer dl')
@@ -154,4 +154,4 @@ def search_pchome(product):
     driver.close()    
     return items
 
-print(search_pchome('口罩'))
+#print(search_pchome('口罩'))

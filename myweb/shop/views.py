@@ -35,15 +35,15 @@ def shop(request):
               return render(request,'shop.html')
        else:
            return render(request,'shop.html')
-   
+
    else:
        return render(request,'shop.html')
-   
+
 def price(request):
    global product
    if 'product' in request.GET:
        product = request.GET['product']
-       
+
        if product != '':
            try:
                data =getData.data_price(product)
@@ -57,5 +57,4 @@ def price(request):
            content = {'product_list':data}
            return render(request,'shop.html',content)
        except:
-           print(product)
            return render(request,'shop.html')
