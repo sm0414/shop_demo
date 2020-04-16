@@ -74,17 +74,19 @@ Django比價
   <form method="get">
     <div id="scraping" class="form-group col-md-7 mx-auto">
       <input id="product" type="text" name="product" class="form-control" placeholder="ex. 口罩,酒精..."/>
-      <input id="search" type="submit" name="submit" class="form-control btn btn-lg btn-dark" value="查詢"/>
+      <input id="search" type="submit" name="submit" class="form-control btn btn-lg btn-dark" value="查詢" />
+
+
     </div>
   </form>
 
   <div id="SwitchBar">
       <dl class="bar">
         <dd class="sort">
-          <a type="button" id="by_accuracy">精準度</a>
+          <input id="by_accuracy" type="button" value="精準度" disabled="disabled" onclick="javascript:location.href='/shop/?product={{product}}&submit=查詢'"/>
         </dd>
         <dd class="sort">
-          <a type="button" id="by_price">價錢低到高</a>
+          <input id="by_price" type="button" value="價錢低到高" onclick="javascript:location.href='/shop/?product={{product}}&submit=查詢&sortby=price'"/>
         </dd>
       </dl>
   </div>
@@ -114,20 +116,28 @@ Django比價
   </div>
 
   <script type="text/javascript">
+
+    $("#search").click(function(){
+      var name = $("#product").val();
+      if (name != ''){
+
+      }else{
+        alert('請輸入商品名稱');
+        event.preventDefault()
+      }
+    });
+
     $("#by_price").click(function(){
-      var path = 'http://192.168.43.122:8000'+location.pathname
-      console.log(path)
-      if (path != 'http://192.168.43.122:8000/shop/price/'){
-        document.location.href="/shop/price";
-      }
+      $("#by_price").attr('disabled', true);
+      $("#by_accuracy").attr('disabled', false);
     });
+
     $("#by_accuracy").click(function goBack(){
-      var path = 'http://192.168.43.122:8000'+location.pathname
-      console.log(path)
-      if (path != 'http://192.168.43.122:8000/shop/'){
-        window.history.back();
-      }
+      $("#by_price").attr('disabled', true);
+      $("#by_accuracy").attr('disabled', false);
     });
+
   </script>
+
 
 {% endblock %}

@@ -22,40 +22,27 @@ def index(request):
 
 def shop(request):
    global product
-   product = ''
-
    if 'product' in request.GET:
        product = request.GET['product']
        if product != '':
            product = product.replace('+','%')
-           try:
-               data =getData.data_accuracy(product)
-               content = {'product_list':data}
-               return render(request,'shop.html',content)
-           except:
-              return render(request,'shop.html')
-       else:
-           return render(request,'shop.html')
+           if 'sortby' in request.GET:
+               try:
+                   product_list =getData.data_price(product)
+                   content = {'product_list':product_list,'product':product}
 
+                   return render(request,'shop.html',content)
+               except:
+                   return render(request,'shop.html')
+           else:
+               try:
+                   product_list =getData.data_accuracy(product)
+                   content = {'product_list':product_list,'product':product}
+
+                   return render(request,'shop.html',content)
+               except:
+                  return render(request,'shop.html')
+       else:
+            return redirect('/shop')
    else:
        return render(request,'shop.html')
-
-def price(request):
-   global product
-   if 'product' in request.GET:
-       product = request.GET['product']
-
-       if product != '':
-           try:
-               data =getData.data_price(product)
-               content = {'product_list':data}
-               return render(request,'shop.html',content)
-           except:
-               return render(request,'shop.html')
-   else:
-       try:
-           data =getData.data_price(product)
-           content = {'product_list':data}
-           return render(request,'shop.html',content)
-       except:
-           return render(request,'shop.html')

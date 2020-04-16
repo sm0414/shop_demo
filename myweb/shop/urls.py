@@ -19,5 +19,4 @@ from . import views
 
 urlpatterns = [
     path('', views.shop),
-    path('price/', views.price),
 ]
