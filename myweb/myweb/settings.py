@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop',
+    'store',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'myweb.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'template').replace('\\','/')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,15 +75,16 @@ WSGI_APPLICATION = 'myweb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+#import pymysql
+#pymysql.install_as_MySQLdb()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'lcc',
-        'USER': 'vlgtejrtqaifoy',
-        'PASSWORD': 'd79c2bd67336e4fd7d96cf58ff970d42068dd05367ae5500d67e7f7bb45b578fb',
-        'HOST': 'ec2-52-207-93-32.compute-1.amazonaws.com',
-        'PORT': '5432'
-
+        'NAME': 'dc35ssjrafc4hp',
+	'USER': 'vlgtejrtqaifoy',
+	'PASSWORD': '79c2bd67336e4fd7d96cf58ff970d42068dd05367ae5500d67e7f7bb45b578fb',
+	'HOST': 'ec2-52-207-93-32.compute-1.amazonaws.com',
+	'PORT': '5432',
     }
 }
 

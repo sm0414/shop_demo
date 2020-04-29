@@ -8,12 +8,6 @@ DATABASES = {
 
 # Static asset configuration
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
-STATICFILES_DIRS=(
-("images",os.path.join(STATIC_ROOT,'images').replace('\\','/')),
-("css",os.path.join(STATIC_ROOT,'css').replace('\\','/')),
-("js",os.path.join(STATIC_ROOT,'js').replace('\\','/')),
-)
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
