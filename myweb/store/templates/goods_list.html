@@ -1,0 +1,106 @@
+
+{% extends "base2.html" %}
+{% load static %}
+{% block title %}商品列表{% endblock %}
+
+{% block body %}
+
+<style type="text/css">
+
+	h3{
+		align: center;
+	}
+
+	.info{
+		clear: both;
+
+		height: 50px;
+		margin:0px auto 50px;
+	}
+
+
+	.info .infoarea{
+		float:left;
+		padding:10px;
+		height: 400px;
+	}
+
+	.info .infoarea img{
+		width: 200px;
+		margin-bottom: 10px;
+	}
+
+	.web{
+		margin-bottom: 10px;
+	}
+
+	.pname{
+		margin-bottom: 10px;
+	}
+
+	.info >p{
+		font-size: 28px;
+		padding-top: 20px;
+		font-weight: bold;
+	}
+
+	ul{
+		padding: 0;
+	}
+
+
+	li{
+		list-style-type: none;
+	}
+
+	.price{
+		width:135px;
+		height:60px;
+	}
+
+	.by_accuracy{
+		width:50px;
+		height:60px;
+		float:left;
+	}
+
+	.by_price{
+		width:85px;
+		height:60px;
+	}
+
+	.col3 {
+		padding-top: 5px;
+		border-top: 1px dashed #666666;
+		text-align: center;
+	}
+</style>
+<table width="100%" border="0" align="center">
+    <tr>
+        <td width="616"><img src="{% static 'images/info.jpg' %}" align="absmiddle"/></td>
+        {% include 'goods_header.html' %}
+    </tr>
+</table>
+<h1 align="center">商品列表</h1>
+
+<div class='info'>
+
+	{% for goods in goods_list %}
+
+		<div class='infoarea col-xs-4 col-sm-6 col-md-4 col-lg-3'>
+
+			<div style="height: 360px;margin: auto;width: 240px;padding:0 20px;border-style: solid;border-width:1px;border-color: #F5F5F5;">
+				<ul>
+					<li class="img"><a href="/store/detail/?id={{ goods.id }}"><img src="{{goods.image}}"  /></a></li>
+					<li class="pname"><a href="/store/detail/?id={{ goods.id }}">產品名稱：{{goods.name}}</a></li>
+					<li>價格：{{goods.price}}</li>
+					<li class="col3"><a href="/store/add/?id={{ goods.id}}&name={{ goods.name }}&price={{ goods.price }}&page=list">添加到購物車</a></li>
+				</ul>
+			</div>
+
+		</div>
+
+	{% endfor %}
+
+</div>
+{% endblock %}

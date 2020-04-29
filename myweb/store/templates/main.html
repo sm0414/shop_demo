@@ -1,0 +1,39 @@
+
+{% extends "base1.html"%}
+{% load static %}
+{% block title %}智捷網上電腦商城{% endblock %}
+
+{% block body %}
+
+<style type="text/css">
+a:link {
+	font-size: 18px;
+	color: #DB8400;
+	text-decoration: none;
+	font-weight: bolder;
+}
+a:visited {
+	font-size: 18px;
+	color: #DB8400;
+	text-decoration: none;
+	font-weight: bolder;
+}
+a:hover {
+	font-size: 18px;
+	color: #DB8400;
+	text-decoration: underline;
+	font-weight: bolder;
+}
+</style>
+</head>
+
+<div>
+  <p class="text1"> <img src="{% static 'images/4.jpg' %}"   align="absmiddle" /> <a href="/store/list/">商品列表</a> </p>
+  <p class="text2"> 您可以從產品列表中瀏覽感興趣的產品進行購買 </p>
+</div>
+<hr width="100%" />
+<div>
+  <p class="text1"> <img src="{% static 'images/mycar1.jpg' %}" align="absmiddle"  /> <a href="/store/show_cart/">購物車</a> </p>
+  <p class="text2"> 您可以把感興趣的商品暫時放在購物車中 </p>
+</div>
+{% endblock %}
