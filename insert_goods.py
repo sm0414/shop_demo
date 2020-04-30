@@ -14,7 +14,7 @@ import psycopg2
 yahoo_url = 'https://tw.buy.yahoo.com/search/product'
 
 #conn = pymysql.connect(host='localhost',user='root',password='123456789',database='myStore',charset='utf8')
-conn = psycopg2.connect(host='ec2-52-207-93-32.compute-1.amazonaws.com',user='vlgtejrtqaifoy',password='79c2bd67336e4fd7d96cf58ff970d42068dd05367ae5500d67e7f7bb45b578fb',database='dc35ssjrafc4hp',port='5432')
+conn = psycopg2.connect(host='localhost',user='vlgtejrtqaifoy',password='79c2bd67336e4fd7d96cf58ff970d42068dd05367ae5500d67e7f7bb45b578fb',database='dc35ssjrafc4hp',port='5432')
 
 cursor = conn.cursor()
 
