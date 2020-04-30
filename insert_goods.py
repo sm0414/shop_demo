@@ -24,7 +24,7 @@ def search_yahoo(product):
     options.add_argument('--disable-gpu')
     options.add_argument("window-size=1024,768")
     options.add_argument("--no-sandbox")
-    driver = webdriver.Chrome(executable_path='C://chromedriver.exe',chrome_options=options)
+    driver = webdriver.Chrome(chrome_options=options)
 #    driver = webdriver.PhantomJS(executable_path='C:/phantomjs.exe')
     driver.get('https://tw.buy.yahoo.com/search/product?p='+product)
     
