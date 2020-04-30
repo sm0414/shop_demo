@@ -116,9 +116,15 @@ def search_momo(product):
     return items
 
 def search_pchome(product):
+
+    chrome_options = webdriver.ChromeOptions()
+#    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+#    chrome_options.add_argument("--headless")
+#    chrome_options.add_argument("--disable-dec-shm-usage")
+#    chrome_options.add_argument("--no-sandbox")
 #    driver = webdriver.PhantomJS(executable_path='C://phantomjs.exe')
-    #driver = webdriver.Chrome('C://chromedriver.exe')
-    driver = webdriver.PhantomJS()
+    driver = webdriver.Chrome(chrome_options=chrome_options)
+#    driver = webdriver.PhantomJS()
     
     encodedProduct = urllib.parse.quote(product)    
     driver.get('https://ecshweb.pchome.com.tw/search/v3.3/?q='+encodedProduct+'&scope=all&sortParm=prc&sortOrder=ac')
