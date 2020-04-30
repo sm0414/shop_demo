@@ -36,3 +36,6 @@ def search_yahoo(product):
         
         link = row.get_attribute('href')
         print(link)
+        
+        
+search_yahoo('筆電')
