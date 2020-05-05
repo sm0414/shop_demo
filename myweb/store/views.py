@@ -44,7 +44,7 @@ def register(request):
 
             customer.save()
 
-            return render(request, 'customer_reg_success.html')
+            return HttpResponseRedirect('/main/')
     else:
         form = RegistrationForm()
 
@@ -75,36 +75,52 @@ def show_goods_detail(request):
 def add_cart(request):
     if not request.session.has_key('customer_id'):
         return HttpResponseRedirect('/store/login/')
-
-    goods_id = int(request.GET['id'])
-    goods_name = request.GET['name']
-    goods_price = float(request.GET['price'])
-
-    #判斷session是否已有購物車
-    if not request.session.has_key('cart'):
-        request.session['cart'] = []
-
-    cart = request.session['cart']
-    flag = 0
-
-    for item in cart:
-        if item[0] == goods_id:
-            item[3] += 1
-            flag = 1
-            break
-
-    if flag == 0:
-        #添加新商品至購物車
-        item = [goods_id, goods_name, goods_price, 1]
-        cart.append(item)
-
-    request.session['cart'] = cart
-
+    #判斷從哪個網頁進來
     page = request.GET['page']
-    if page == 'detail':
-        return HttpResponseRedirect('/store/detail/?id=' + str(goods_id))
+
+    #更新購物車數量
+    if page == 'cart':
+        goods_id = int(request.GET['id'])
+        goods_quantity = int(request.GET['quantity'])
+        cart = request.session['cart']
+        for item in cart:
+            if item[0] == goods_id:
+                item[3] = goods_quantity
+                break
+        request.session['cart'] = cart
+        return HttpResponseRedirect('/store/show_cart/')
     else:
-        return HttpResponseRedirect('/store/list/')
+        goods_id = int(request.GET['id'])
+        goods_name = request.GET['name']
+        goods_price = float(request.GET['price'])
+
+        #判斷session是否已有購物車
+        if not request.session.has_key('cart'):
+            request.session['cart'] = []
+
+        cart = request.session['cart']
+        flag = 0
+
+        #判斷商品是否已在購物車內
+        for item in cart:
+            if item[0] == goods_id:
+                item[3] += 1
+                flag = 1
+                break
+
+        #商品不在購物車時新增
+        if flag == 0:
+            #[id,名稱,價格,數量]
+            item = [goods_id, goods_name, goods_price, 1]
+            cart.append(item)
+
+        request.session['cart'] = cart
+
+
+        if page == 'detail':
+            return HttpResponseRedirect('/store/detail/?id=' + str(goods_id))
+        else:
+            return HttpResponseRedirect('/store/list/')
 
 
 def show_cart(request):
@@ -120,6 +136,7 @@ def show_cart(request):
     for item in cart:
         subtotal = item[2] * item[3]
         total += subtotal
+        #[id,名稱,價格,數量,總價]
         new_item = (item[0], item[1], item[2], item[3], subtotal)
 
         list.append(new_item)
@@ -129,53 +146,57 @@ def show_cart(request):
 
 def submit_orders(request):
     if request.method == 'POST':
-        
-        cart = request.session['cart']
-        userid = request.session['customer_id']
-        
-        orders = Orders()
-        i = random.randint(0, 9)
-        d = datetime.datetime.now()
-        ordersid = str(int(d.timestamp() * 1e6)) + str(i)
-        orders.id = ordersid
-        orders.userid = userid
-        orders.order_date = d
-        orders.status = 1
-        orders.total = 0.0
-        orders.save()
+        if request.session.has_key('cart'):
+            cart = request.session['cart']
+            userid = request.session['customer_id']
 
-        total = 0.0
+            orders = Orders()
+            i = random.randint(0, 9)
+            d = datetime.datetime.now()
+            ordersid = str(int(d.timestamp() * 1e6)) + str(i)
+            orders.id = ordersid
+            orders.userid = userid
+            orders.order_date = d
+            orders.status = 1
+            orders.total = 0.0
+            orders.save()
 
-        for item in cart:
-            goodsid = item[0]
-            goods = Goods.objects.get(id=goodsid)
-            
-            #在網頁上更新後的數量
-            quantity = request.POST['quantity_' + str(goodsid)]
+            total = 0.0
 
-            try:
-                quantity = int(quantity)
-            except:
-                quantity = 0
+            for item in cart:
+                goodsid = item[0]
+                goods = Goods.objects.get(id=goodsid)
 
-            subtotal = item[2] * quantity
-            total += subtotal
+                #在網頁上更新後的數量
+                quantity = request.POST['quantity_' + str(goodsid)]
 
-            order_line_item = OrderLineItem()
-            order_line_item.quantity = quantity
-            order_line_item.userid = userid
-            order_line_item.goods = goods
-            order_line_item.orders = orders
-            order_line_item.sub_total = subtotal
+                try:
+                    quantity = int(quantity)
+                except:
+                    quantity = 0
 
-            order_line_item.save()
+                subtotal = item[2] * quantity
+                total += subtotal
 
-        orders.total = total
-        orders.save()
+                order_line_item = OrderLineItem()
+                order_line_item.quantity = quantity
+                order_line_item.userid = userid
+                order_line_item.goods = goods
+                order_line_item.orders = orders
+                order_line_item.sub_total = subtotal
 
-        del request.session['cart']
+                order_line_item.save()
 
-        return render(request, 'order_finish.html', {'ordersid': ordersid})
+            orders.total = total
+            orders.save()
+
+            del request.session['cart']
+
+            return render(request, 'order_finish.html', {'ordersid': ordersid})
+        else:
+            return render(request, 'main.html')
+    else:
+        return render(request, 'main.html')
 
 
 def logout(request):

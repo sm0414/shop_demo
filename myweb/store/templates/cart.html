@@ -28,9 +28,9 @@
 
 </style>
 
-<script>
-        function calc(rowid, quantityInput) {
-
+<script type="text/javascript">
+        function calc(rowid,name,price,quantityInput) {
+          
             quantity = quantityInput.value
             if (isNaN(quantity)) {
                 alert("不是有效的數值！");
@@ -43,28 +43,30 @@
             var price_id = 'price_' + rowid;
             // 單價
             var price = parseFloat(document.getElementById(price_id).innerText);
-
             // 小計id
             var subtotal_id = 'subtotal_' + rowid;
             // 小計(更新之前)
             subtotal1 = parseFloat(document.getElementById(subtotal_id).innerText);
-            //四捨五入並保留兩位小數
-            subtotal1 = subtotal1.toFixed(2);
-            document.getElementById(subtotal_id).innerText = quantity * price;
-            // 小計(更新之後)
-            subtotal2 = parseFloat(document.getElementById(subtotal_id).innerText);
-            // 合計
-            total = parseFloat(document.getElementById('total').innerText);
-            // 計算合計
-            total = total - subtotal1 + subtotal2;
-            //四捨五入並保留兩位小數
-            total = total.toFixed(2);
-            //更新合計
-            document.getElementById('total').innerText = total;
+            //小計(更新之後)
+            subtotal2 = quantity * price;
+            subtotal2 = subtotal2.toFixed(1);
+            document.getElementById(subtotal_id).innerText = subtotal2;
+            subtotal2 = parseInt(subtotal2);
+
+            var update_cart = "http://192.168.43.122:8000/store/add/?id="+rowid+"&name="+name+"&price="+price+"&quantity="+quantity+"&page=cart";
+            //console.log(update_cart);
+            window.location.replace(update_cart);
+
+            //總價
+            //total = parseFloat(document.getElementById('total').innerText);
+            //total = total-subtotal1+subtotal2;
+            //total = total.toFixed(1);
+            //document.getElementById('total').innerText = total;
 
         }
 
 </script>
+
 <form action="/store/submit_orders/" method="post">
     {% csrf_token %}
     <table width="100%" border="0" align="center">
@@ -87,7 +89,7 @@
         <tr>
             <td height="50" align="left" class="trow">  {{ item.1 }}</td>
             <td align="center" class="trow">
-                <input name="quantity_{{ item.0 }}" type="text" value="{{ item.3 }}" onblur="calc({{ item.0 }}, this)"/>
+                <input name="quantity_{{ item.0 }}" type="text" value="{{ item.3 }}" onblur="calc({{item.0}},{{item.0}},{{item.2}}, this)"/>
             </td>
             <td align="center" class="trow">¥<span id="price_{{ item.0 }}">{{ item.2 }}</span></td>
             <td align="center" class="trow">¥<span id="subtotal_{{ item.0 }}">{{ item.4 }}</span>
