@@ -64,6 +64,7 @@ class GoodsListView(ListView):
     template_name = 'goods_list.html'
 
 
+
 def show_goods_detail(request):
     goodsid = request.GET['id']
     goods = Goods.objects.get(id=goodsid)
