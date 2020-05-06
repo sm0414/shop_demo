@@ -42,18 +42,18 @@
 				<br>
 
 				<div style="width:600px">
-					<a class="add_cart" href="/store/add/?id={{ goods.id}}&name={{ goods.name }}&price={{ goods.price }}&quantity=1&page=detail">添加到購物車</a>
+					<a class="add_cart" href="/store/add/?id={{ goods.id}}&name={{ goods.name }}&image={{goods.image}}&price={{ goods.price }}&quantity=1&page=detail">添加到購物車</a>
 				</div>
 			</td>
 		</tr>
 </table>
 
-{% block script %}
+<script type="text/javascript">
 
 	$('.add_cart').click(function(){
 		alert("商品已加入購物車！！");
 	});
 
-{% endblock %}
+</script>
 
 {% endblock %}

@@ -86,14 +86,16 @@ def add_cart(request):
         cart = request.session['cart']
         for item in cart:
             if item[0] == goods_id:
-                item[3] = goods_quantity
+                item[4] = goods_quantity
                 break
         request.session['cart'] = cart
+        
         return HttpResponseRedirect('/store/show_cart/')
     else:
         goods_id = int(request.GET['id'])
         goods_name = request.GET['name']
         goods_price = float(request.GET['price'])
+        goods_image = request.GET['image']
 
         #判斷session是否已有購物車
         if not request.session.has_key('cart'):
@@ -105,14 +107,14 @@ def add_cart(request):
         #判斷商品是否已在購物車內
         for item in cart:
             if item[0] == goods_id:
-                item[3] += 1
+                item[4] += 1
                 flag = 1
                 break
 
         #商品不在購物車時新增
         if flag == 0:
-            #[id,名稱,價格,數量]
-            item = [goods_id, goods_name, goods_price, 1]
+            #[id,名稱,照片,價格,數量]
+            item = [goods_id, goods_name, goods_image, goods_price, 1]
             cart.append(item)
 
         request.session['cart'] = cart
@@ -135,10 +137,10 @@ def show_cart(request):
     list = []
     total = 0.0
     for item in cart:
-        subtotal = item[2] * item[3]
+        subtotal = item[3] * item[4]
         total += subtotal
-        #[id,名稱,價格,數量,總價]
-        new_item = (item[0], item[1], item[2], item[3], subtotal)
+        #[id,名稱,照片,價格,數量,總價]
+        new_item = (item[0], item[1], item[2], item[3], item[4], subtotal)
 
         list.append(new_item)
 
@@ -176,7 +178,7 @@ def submit_orders(request):
                 except:
                     quantity = 0
 
-                subtotal = item[2] * quantity
+                subtotal = item[3] * quantity
                 total += subtotal
 
                 order_line_item = OrderLineItem()

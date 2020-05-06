@@ -88,10 +88,10 @@
 
 			<div style="height: 360px;margin: auto;width: 240px;padding:0 20px;border-style: solid;border-width:1px;border-color: #F5F5F5;">
 				<ul>
-					<li class="img"><a href="/store/detail/?id={{ goods.id }}"><img src="{{goods.image}}"  /></a></li>
+					<li class="img"><a href="/store/detail/?id={{ goods.id }}"><img src="{{goods.image}}"/></a></li>
 					<li class="pname"><a href="/store/detail/?id={{ goods.id }}">產品名稱：{{goods.name}}</a></li>
 					<li>價格：{{goods.price}}</li>
-					<li class="col3"><a class="add_cart" href="/store/add/?id={{ goods.id}}&name={{ goods.name }}&price={{ goods.price }}&quantity=1&page=list">添加到購物車</a></li>
+					<li class="col3"><a class="add_cart" href="/store/add/?id={{ goods.id}}&name={{ goods.name }}&image={{goods.image}}&price={{ goods.price }}&quantity=1&page=list">添加到購物車</a></li>
 				</ul>
 			</div>
 
@@ -101,12 +101,12 @@
 
 </div>
 
-{% block script %}
+<script type="text/javascript">
 
 	$('.add_cart').click(function(){
 		alert("商品已加入購物車！！");
 	});
 
-{% endblock %}
+</script>
 
 {% endblock %}
