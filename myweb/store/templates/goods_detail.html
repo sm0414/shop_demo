@@ -41,8 +41,9 @@
 
 				<br>
 
-				<div style="width:600px">
-					<a class="add_cart" href="/store/add/?id={{ goods.id}}&name={{ goods.name }}&image={{goods.image}}&price={{ goods.price }}&quantity=1&page=detail">添加到購物車</a>
+				<div style="float:left; margin-left:150px; margin-top:40px;">
+					<a class="add_cart" href="/store/add/?id={{ goods.id}}&name={{ goods.name }}&image={{goods.image}}&price={{ goods.price }}&quantity=1&page=detail">
+						<img src="{% static 'images/button_add-to-cart.png' %}">添加到購物車</a>
 				</div>
 			</td>
 		</tr>

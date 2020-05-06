@@ -43,9 +43,7 @@ table {
 
 <form action="/store/register/" method="post">
     {% csrf_token %}
-    <div><img src="{% static 'images/reg.jpg' %}" align="absmiddle"/></div>
-    <br>
-    <hr width="100%"/>
+
 
     <ul>
         {% for field, errors in form.errors.items %}
@@ -93,7 +91,7 @@ table {
     </table>
     <br>
     <div align="center">
-        <input type="image" src="{% static 'images/submit_button.jpg' %}"/>
+        <input type="image" src="{% static 'images/button_sign-up.png' %}" style="width:90px; height:35px;"/>
     </div>
 </form>
 
