@@ -20,6 +20,26 @@
       .navbar-nav{
       margin-left: 60px;
       }
+
+      .footer{
+        height: 30px;
+        color: #ffffff;
+        background: #c3c3c3;
+        text-align: center;
+        clear: both;
+        margin-bottom:2px;
+        padding-top: 4px;
+        padding: auto;
+      }
+
+      .fixed-bottom {
+        position: fixed;
+        bottom: 0;
+        width:100%;
+      }
+
+      {% block css %}{% endblock %}
+
     </style>
 </head>
 
@@ -28,7 +48,7 @@
 
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
 
-  <a href="http://192.168.43.122:8000/store/main/" class="navbar-brand">商城</a>
+  <a href="http://192.168.0.102:8000/store/list/" class="navbar-brand">商城</a>
 
   <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
       <span class="navbar-toggler-icon"></span>
@@ -50,10 +70,6 @@
         <a href="/store/logout" class="nav-link">登出</a>
       </li>
 
-      <li class="nav-item">
-        <a href="#" class="nav-link">會員中心</a>
-      </li>
-
     </ul>
   </div>
 </nav>
@@ -61,8 +77,27 @@
 {% block body %}{% endblock %}
 
 <div class="footer">
-    <hr width="100%"/>
     Dali E.so © 2020. All Rights Reserved
 </div>
+
+<script type="text/javascript">
+  $(function(){
+    function footerPosition(){
+        $("footer").removeClass("fixed-bottom");
+        var contentHeight = document.body.scrollHeight,
+            winHeight = window.innerHeight;
+        if(!(contentHeight > winHeight)){
+
+            $("footer").addClass("fixed-bottom");
+        } else {
+            $("footer").removeClass("fixed-bottom");
+        }
+    }
+    footerPosition();
+    $(window).resize(footerPosition);
+  });
+
+  {% block script %}{% endblock %}
+</script>
 </body>
 </html>

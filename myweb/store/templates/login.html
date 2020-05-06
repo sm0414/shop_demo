@@ -3,6 +3,7 @@
 {% load static %}
 {% block title %}客戶登錄{% endblock %}
 
+
 {% block body %}
 
 <form action="/store/login/" method="post">
@@ -23,7 +24,7 @@
         </tr>
         <tr height="40">
             <td align="right"> </td>
-            <td><input type="image" src="{% static 'images/login_button.jpg' %}" />
+            <td><input type="image" src=""{% static 'images/submit_button.jpg' %}" />
                      <a href="/store/register/"><img src="{% static 'images/reg_button.jpg' %}" border="0"/></a>
             </td>
         </tr>

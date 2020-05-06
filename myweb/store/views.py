@@ -21,7 +21,7 @@ def login(request):
                 if c[0].password == password:
                     #加入session
                     request.session['customer_id'] = c[0].userid
-                    return HttpResponseRedirect('/store/main/')
+                    return HttpResponseRedirect('/store/list/')
     else:
         form = LoginForm()
 
@@ -44,7 +44,7 @@ def register(request):
 
             customer.save()
 
-            return HttpResponseRedirect('/main/')
+            return HttpResponseRedirect('/store/login/')
     else:
         form = RegistrationForm()
 
@@ -195,9 +195,9 @@ def submit_orders(request):
 
             return render(request, 'order_finish.html', {'ordersid': ordersid})
         else:
-            return render(request, 'main.html')
+            return render(request, 'goods_list.html')
     else:
-        return render(request, 'main.html')
+        return render(request, 'goods_list.html')
 
 
 def logout(request):

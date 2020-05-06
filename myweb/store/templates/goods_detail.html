@@ -3,9 +3,9 @@
 {% load static %}
 {% block title %}客戶註冊{% endblock %}
 
-{% block body %}
 
-<style type="text/css">
+{% block css %}
+
 	.title {
 		font-size: 20px;
 		color: #FF6600;
@@ -16,15 +16,11 @@
 		float: right;
 	}
 
-</style>
+{% endblock %}
 
-<table width="100%" border="0" align="center">
-    <tr>
-        <td width="616"><img src="{% static 'images/info.jpg' %}" align="absmiddle"/></td>
-        {% include 'goods_header.html' %}
-    </tr>
-</table>
-<hr width="100%"/>
+
+{% block body %}
+
 <div class="text3" align="center">{{ goods.name }}</div><br><br>
 <table width="100%" border="0" align="center">
     <tr>
@@ -46,11 +42,18 @@
 				<br>
 
 				<div style="width:600px">
-					<a class="add_cart" href="/store/add/?id={{ goods.id}}&name={{ goods.name }}&price={{ goods.price }}&quantity=1&page=detail">
-						<img src="{% static 'images/button.jpg' %}">
-					</a>
+					<a class="add_cart" href="/store/add/?id={{ goods.id}}&name={{ goods.name }}&price={{ goods.price }}&quantity=1&page=detail">添加到購物車</a>
 				</div>
 			</td>
 		</tr>
 </table>
+
+{% block script %}
+
+	$('.add_cart').click(function(){
+		alert("商品已加入購物車！！");
+	});
+
+{% endblock %}
+
 {% endblock %}

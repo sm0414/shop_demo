@@ -64,6 +64,16 @@ Django比價
     height:60px;
   }
 
+  #SwitchBar{
+    height: 30px;
+    text-align: center;
+    clear: both;
+    margin-bottom:2px;
+    padding-top: 4px;
+    padding: auto;
+    width: 100%;
+  }
+
 
 
 {% endblock %}
@@ -82,10 +92,10 @@ Django比價
 
   <div id="SwitchBar">
       <dl class="bar">
-        <dd class="sort">
+        <dd class="sort" style="display:inline; font-size:12px">
           <input id="by_accuracy" type="button" value="精準度" disabled="disabled" onclick="javascript:location.href='/shop/?product={{product}}&submit=查詢'"/>
         </dd>
-        <dd class="sort">
+        <dd class="sort" style="display:inline; font-size:12px">
           <input id="by_price" type="button" value="價錢低到高" onclick="javascript:location.href='/shop/?product={{product}}&submit=查詢&sortby=price'"/>
         </dd>
       </dl>
@@ -123,7 +133,7 @@ Django比價
 
       }else{
         alert('請輸入商品名稱');
-        event.preventDefault()     
+        event.preventDefault()
       }
     });
 

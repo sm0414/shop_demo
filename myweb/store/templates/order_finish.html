@@ -2,35 +2,39 @@
 {% extends "base1.html"%}
 {% block title %}訂單完成{% endblock %}
 
-{% block body %}
 
-<style type="text/css">
-a:link {
-    font-size: 18px;
-    color: #DB8400;
-    text-decoration: none;
-    font-weight: bolder;
-}
-a:visited {
-    font-size: 18px;
-    color: #DB8400;
-    text-decoration: none;
-    font-weight: bolder;
-}
-a:hover {
-    font-size: 18px;
-    color: #DB8400;
-    text-decoration: underline;
-    font-weight: bolder;
-}
-</style>
+{% block css %}
+
+  a:link {
+      font-size: 18px;
+      color: #DB8400;
+      text-decoration: none;
+      font-weight: bolder;
+  }
+  a:visited {
+      font-size: 18px;
+      color: #DB8400;
+      text-decoration: none;
+      font-weight: bolder;
+  }
+  a:hover {
+      font-size: 18px;
+      color: #DB8400;
+      text-decoration: underline;
+      font-weight: bolder;
+  }
+
+{% endblock %}
+
+
+{% block body %}
 
 <div align="center" >
   <p class="text7"> 謝謝您的購物！ </p>
   <p class="text7"> 您的訂單號是： {{ordersid}}</p>
   <p class="text7"> 您可以繼續購物！ </p>
    <p class="text7">
-       <a href="/store/main/">返回主頁面</a>
+       <a href="/store/list/">返回主頁面</a>
   </p>
 </div>
 

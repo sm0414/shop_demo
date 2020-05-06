@@ -16,6 +16,8 @@ Django資訊站
 
 {% block content %}
 
+<h1 align="center">天氣查詢</h1>
+
 <form method="get">
   <div id="city" class="form-group col-md-7 mx-auto">
     <input id="cityname" type="text" name="city" class="form-control" placeholder="ex. 臺北市,臺中市...">
@@ -23,9 +25,18 @@ Django資訊站
   </div>
 </form>
 
-<div class="col-8 mx-auto mt-3">
+<div class="return_weater col-8 mx-auto mt-3">
   <div id="weater" class="alert alert-success">{{weater}}</div>
 </div>
+
+<script type="text/javascript">
+  var weater = '{{weater}}';
+  if (weater == ''){
+    $('.return_weater').css("display","none");
+  }else{
+    $('.return_weater').css("display","block");
+  }
+</script>
 
 
 
