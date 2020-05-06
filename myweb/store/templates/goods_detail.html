@@ -10,15 +10,11 @@
 		font-size: 20px;
 		color: #FF6600;
 		font-style: italic;
+		margin-top: 50px;
 	}
 
 	.add_cart{
 		float: right;
-	}
-
-	.title{
-		margin-top: 50px;
-		font-size: 25px;
 	}
 
 {% endblock %}
@@ -48,7 +44,7 @@
 
 				<div style="float:left; margin-left:150px; margin-top:40px;">
 					<a class="add_cart" href="/store/add/?id={{ goods.id}}&name={{ goods.name }}&image={{goods.image}}&price={{ goods.price }}&quantity=1&page=detail">
-						<img src="{% static 'images/button_add-to-cart.png' %}" style="width:180px; height:70px;"></a>
+						<img src="{% static 'images/button_add-to-cart.png' %}" style="width:185px; height:50px;"></a>
 				</div>
 			</td>
 		</tr>
