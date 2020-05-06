@@ -86,14 +86,14 @@
 
 		<div class='infoarea col-xs-4 col-sm-6 col-md-4 col-lg-3'>
 
-			<div style="height: 360px;margin: auto;width: 240px;padding:0 20px;border-style: solid;border-width:1px;border-color: #F5F5F5;">
+			<div style="height: 385px;margin: auto;width: 240px;padding:0 20px;border-style: solid;border-width:1px;border-color: #F5F5F5;">
 				<ul>
 					<li class="img"><a href="/store/detail/?id={{ goods.id }}"><img src="{{goods.image}}"/></a></li>
 					<li class="pname"><a href="/store/detail/?id={{ goods.id }}">產品名稱：{{goods.name}}</a></li>
 					<li>價格：{{goods.price}}</li>
-					<li class="col3">
+					<li class="col3" style="margin-top:3px;">
 						<a class="add_cart" href="/store/add/?id={{ goods.id}}&name={{ goods.name }}&image={{goods.image}}&price={{ goods.price }}&quantity=1&page=list">
-							<img src="{% static 'images/button_add-to-cart.png' %}" style="width:58px; height:28px;">
+							<img src="{% static 'images/button_add-to-cart.png' %}" style="width:110px; height:28px;">
 						</a>
 					</li>
 				</ul>
