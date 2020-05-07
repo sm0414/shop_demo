@@ -59,7 +59,7 @@ table {
     </table>
     <br>
     <div align="center">
-        <a href="#" class="submit_orders" class="checkout"><input type="image" src="{% static 'images/button_checkout.png' %}" style="width:120px; height:47px;" border="0"/></a>  
+        <a href="#" class="submit_orders checkout"><input type="image" src="{% static 'images/button_checkout.png' %}" style="width:120px; height:47px;" border="0"/></a>  
     </div>
 </form>
 
@@ -67,7 +67,9 @@ table {
 
   $('.cart').addClass("active");
   $('.list').removeClass("active");
+
   $('.checkout').click(function(event){
+    console.log({{list}});
     alter("您的購物車是空的喔！！");
     event.preventdefault()
   });
