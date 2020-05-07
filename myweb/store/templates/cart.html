@@ -67,6 +67,10 @@ table {
 
   $('.cart').addClass("active");
   $('.list').removeClass("active");
+  $('.checkout').click(function(event){
+    alter("您的購物車是空的喔！！");
+    event.preventdefault()
+  });
 
   function calc(rowid,name,price,quantityInput) {
 
