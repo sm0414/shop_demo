@@ -71,10 +71,10 @@ table {
   $('.checkout').click(function(event){
     var list = {{list}};
     var len = list.length;
-    console.log(len);
+
     if (len == '0'){
       alert("您的購物車是空的喔！！");
-      event.preventdefault();
+      event.preventDefault();
     }
   });
 
@@ -89,18 +89,18 @@ table {
       }
 
       // 單價id
-      var price_id = 'price_' + rowid;
+      //var price_id = 'price_' + rowid;
       // 單價
-      var price = parseFloat(document.getElementById(price_id).innerText);
+      //var price = parseFloat(document.getElementById(price_id).innerText);
       // 小計id
-      var subtotal_id = 'subtotal_' + rowid;
+      //var subtotal_id = 'subtotal_' + rowid;
       // 小計(更新之前)
-      subtotal1 = parseFloat(document.getElementById(subtotal_id).innerText);
+      //subtotal1 = parseFloat(document.getElementById(subtotal_id).innerText);
       //小計(更新之後)
-      subtotal2 = quantity * price;
-      subtotal2 = subtotal2.toFixed(1);
-      document.getElementById(subtotal_id).innerText = subtotal2;
-      subtotal2 = parseInt(subtotal2);
+      //subtotal2 = quantity * price;
+      //subtotal2 = subtotal2.toFixed(1);
+      //document.getElementById(subtotal_id).innerText = subtotal2;
+      //subtotal2 = parseInt(subtotal2);
 
       var update_cart = "http://vincent-djangodemo01.herokuapp.com/store/add/?id="+rowid+"&name="+name+"&price="+price+"&quantity="+quantity+"&page=cart";
       console.log(update_cart);
