@@ -71,7 +71,7 @@ table {
   $('.checkout').click(function(event){
     var list = {{list}};
 
-    if (list.length) == 0{
+    if (list.length) == '0'{
       alter("您的購物車是空的喔！！");
       event.preventdefault();
     }
@@ -85,7 +85,6 @@ table {
           quantityInput.value = 0;
           quantity = quantityInput.value
           quantityInput.focus();
-          // return;
       }
 
       // 單價id
