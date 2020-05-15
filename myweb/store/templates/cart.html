@@ -70,8 +70,9 @@ table {
 
   $('.checkout').click(function(event){
     var list = {{list}};
-
-    if (list.length) == '0'{
+    var len = list.length;
+    console.log(len);
+    if (len == '0'){
       alter("您的購物車是空的喔！！");
       event.preventdefault();
     }
