@@ -46,7 +46,7 @@ table {
             <td><img src="{{ item.2 }}" style="width:100px; height:100px;" /></td>
             <td height="50" align="left" class="trow">{{ item.1 }} </td>
             <td align="center" class="trow">
-                <input name="quantity_{{ item.0 }}" type="text" value="{{ item.4 }}" onblur="calc({{item.0}},{{item.0}},{{item.3}}, this)"/>
+                <input name="quantity_{{ item.0 }}" type="text" value="{{ item.4 }}" onblur="calc({{item.0}},{{item.0}},{{item.3}}, this)">
             </td>
             <td align="center" class="trow"><span id="price_{{ item.0 }}">{{ item.3 }}</span></td>
             <td align="center" class="trow"><span id="subtotal_{{ item.0 }}">{{ item.5 }}</span>
@@ -79,7 +79,7 @@ table {
   });
 
   function calc(rowid,name,price,quantityInput) {
-
+    console.log(name);
       quantity = quantityInput.value
       if (isNaN(quantity)) {
           alert("不是有效的數值！");
