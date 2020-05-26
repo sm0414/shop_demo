@@ -41,6 +41,7 @@ table {
             <td width="15%" align="center" class="theader">單價</td>
             <td width="15%" align="center" class="theader">小計</td>
         </tr>
+        console.log({{list}})
         {% for item in list %}
         <tr style="height:150px;"> 
             <td><img src="{{ item.2 }}" style="width:100px; height:100px;" /></td>
@@ -79,7 +80,7 @@ table {
         event.preventDefault();
       }
     }catch(e) {
-      console.log(e.message);  
+      console.log(e.message);
     }
   });
 
