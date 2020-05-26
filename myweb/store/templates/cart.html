@@ -65,11 +65,12 @@ table {
 
 <script type="text/javascript">
 
-  $('.cart').addClass("active");
   $('.list').removeClass("active");
+  $('.cart').addClass("active");
 
   $('.checkout').click(function(event){
-    var list = {{list}};
+    var list = {{list.0}};
+    console.log(list);
     var len = list.length;
 
     if (len == '0'){
