@@ -69,13 +69,17 @@ table {
   $('.cart').addClass("active");
 
   $('.checkout').click(function(event){
-    var list = {{list}};
-    console.log(list);
-    var len = list.length;
 
-    if (len == '0'){
-      alert("您的購物車是空的喔！！");
-      event.preventDefault();
+    try {
+      var list = {{list}};
+      var len = list.length;
+
+      if (len == '0'){
+        alert("您的購物車是空的喔！！");
+        event.preventDefault();
+      }
+    }catch(e) {
+      console.log(e.message);  
     }
   });
 
