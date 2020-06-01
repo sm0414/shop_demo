@@ -93,7 +93,7 @@ def search_momo(product):
     for row in soup.find_all(class_='goodsItemLi'):
         if (i<15):
             item = {}
-            name = row.find('p','prdName').text
+            name = row.find('h3','prdName').text
             price = row.find('b','price').text.replace(',','')
             if not price:
                 continue
@@ -152,4 +152,4 @@ def search_pchome(product):
     driver.close()
     return items
 
-print(search_momo('口罩'))
+#print(search_momo('口罩'))
