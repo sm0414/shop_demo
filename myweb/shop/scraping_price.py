@@ -20,7 +20,7 @@ momo_url = 'https://m.momoshop.com.tw/search.momo'
 pchome_url = 'https://ecshweb.pchome.com.tw/search/v3.3'
 
 def search_yahoo(product):
-    
+
     param = {'p':product,'sort':'price'}
     header = {'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
 'Accept-Encoding': 'gzip, deflate, br',
@@ -37,38 +37,38 @@ def search_yahoo(product):
 'Upgrade-Insecure-Requests': '1',
 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36'
 }
-    
+
     response = requests.get(yahoo_url,headers=header,params=param).text
     soup = BeautifulSoup(response,'html.parser')
-    
+
     items = []
     i=0
     for row in soup.find_all('li',class_='BaseGridItem__grid___2wuJ7'):
         if (i<15):
             item = {}
-            
+
             img = row.find('img').get('srcset')
             img = img.split(',')
             img = img[0].lstrip()
             img = img.split(' ')
-            name = row.find('span',class_='BaseGridItem__title___2HWui').text 
+            name = row.find('span',class_='BaseGridItem__title___2HWui').text
             price = row.find('em').text
             price = price.strip('$')
             link = row.find('a',class_='BaseGridItem__content___3LORP BaseGridItem__hover___3UlCS').get('href')
-            
+
             item['webname'] = 'Yahoo購物中心'
             item['pname'] = name
             item['price'] = int(price)
             item['link'] = link
             item['img'] = img[0]
-                
+
             items.append(item)
         i+=1
-    
+
     return items
 
 def search_momo(product):
-    
+
     params = {'searchKeyword':product,'searchType':'2'}
     headers = {'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
 'Accept-Encoding': 'gzip, deflate, br',
@@ -84,47 +84,47 @@ def search_momo(product):
 'Upgrade-Insecure-Requests': '1',
 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36'
 }
-    
+
     res = requests.get(momo_url,headers=headers,params=params).text
     soup = BeautifulSoup(res,'html.parser')
-    
+
     items = []
     i=0
     for row in soup.find_all(class_='goodsItemLi'):
         if (i<15):
             item = {}
-            name = row.find('p','prdName').text
+            name = row.find('h3','prdName').text
             price = row.find('b','price').text.replace(',','')
             if not price:
                 continue
             link= 'https://m.momoshop.com.tw' + row.find('a').get('href')
             img = row.find('img').get('src')
-            
+
             price = price.replace('$','')
             name = name.strip()
-            
+
             if price != '熱銷一空':
                 item['webname'] = 'momo購物網'
                 item['pname'] = name
                 item['price'] = int(price)
                 item['link'] = link
                 item['img'] = img
-                
+
                 items.append(item)
         i+=1
-    
+
     return items
 
 def search_pchome(product):
 #    driver = webdriver.PhantomJS(executable_path='C://phantomjs.exe')
     #driver = webdriver.Chrome('C://chromedriver.exe')
     driver = webdriver.PhantomJS()
-    
-    encodedProduct = urllib.parse.quote(product)    
-    driver.get('https://ecshweb.pchome.com.tw/search/v3.3/?q='+encodedProduct+'&scope=all&sortParm=prc&sortOrder=ac')
-    
 
-    
+    encodedProduct = urllib.parse.quote(product)
+    driver.get('https://ecshweb.pchome.com.tw/search/v3.3/?q='+encodedProduct+'&scope=all&sortParm=prc&sortOrder=ac')
+
+
+
     try:
         WebDriverWait(driver,30).until(EC.presence_of_element_located((By.ID,'ItemContainer')))
         time.sleep(0.5)
@@ -132,7 +132,7 @@ def search_pchome(product):
         conetnt = driver.find_elements_by_css_selector('#ItemContainer dl')
         i=0
         items = []
-        
+
         for row in conetnt:
             if (i<15):
                 item = {}
@@ -146,12 +146,12 @@ def search_pchome(product):
                 item['price'] = int(price)
                 item['link'] = link
                 item['img'] = img
-                
+
                 items.append(item)
-            
+
             i+=1
-    
-    driver.close()    
+
+    driver.close()
     return items
 
 #print(search_pchome('口罩'))
